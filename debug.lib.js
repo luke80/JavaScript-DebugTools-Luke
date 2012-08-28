@@ -1,1 +1,3 @@
 // JavaScript Document
+
+function Logger
