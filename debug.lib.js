@@ -1,3 +1,26 @@
 // JavaScript Document
 
-function Logger
+function Logger(type){
+
+}
+
+/*
+Creates the console where debug information is logged
+*/
+Logger.prototype.info(msg){
+
+}
+
+/*
+Logs a message to the console of the level info
+*/
+Logger.prototype.info(msg){
+
+}
+
+/*
+Logs a message to the console of the level debug
+*/
+Logger.prototype.debug(msg){
+
+}
