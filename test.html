@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="debug.lib.js"></script>
+	<script>
+		var log = new Logger();
+	</script>
+	<link rel="stylesheet" type="text/css" href="test.css" />
 </head>
 
 <body>
 	<h1>Hello world!</h1>
+	<div id="console">
+		<h1>Hello again!</h1>
+	</div>
+	<button type="button" onclick="log.createConsole();">Create Debug Console</button>
+	<button type="button" onclick="log.info('hello');">Add info message</button>
+	<button type="button" onclick="log.debug('Danger Will Robinson');">Add debug message</button>
 </body>
-
 </html>
