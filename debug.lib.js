@@ -7,7 +7,7 @@ function Logger(type){
 /*
 Creates the console where debug information is logged
 */
-Logger.prototype.info(msg){
+Logger.prototype.createConsole(msg){
 
 }
 
