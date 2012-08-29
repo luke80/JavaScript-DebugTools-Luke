@@ -4,27 +4,43 @@ function Logger(type){
 
 };
 
-Logger.prototype.CONSOLE_ID = "logger_console";
-Logger.prototype.BASIC_MSG_CSS = "padding: 0; margin: 0;"
+Logger.prototype.CONSOLE_SCREEN_ID = "console_screen";
+Logger.prototype.BASIC_MSG_CSS = "padding: 0; margin: 0;";
 
 /*
 Creates the console where debug information is logged
 */
 Logger.prototype.createConsole = function(msg){
-	// Create the html for the console
-	var console = document.createElement("div"); 	
-	var consoleCss = 'float: right; \
-			width: 100%; \
+	// Create the console wrapper for the console 
+	var consoleWrapper = document.createElement("div"); 	
+	consoleWrapper.setAttribute("id", this.CONSOLE_SCREEN_ID);
+	var consoleWrapperCss = 'width: 50%; \
 			height: 100px; \
 			overflow: auto; \
 			border-style: dashed; \
-			background-color: #C0C0C0; opacity:0.6; filter:alpha(opacity=60);';
-	console.setAttribute("id", this.CONSOLE_ID);
-	console.setAttribute("style", consoleCss);
+			left: 0; \
+			top: 0; \
+			position: absolute;\
+			z-index: 100;\
+			background-color: #C0C0C0;';
+	consoleWrapper.setAttribute("style", consoleWrapperCss);
 
-	var testMsg = document.createTextNode("Mmmm.... good! Campbell's Soup!");
-	console.appendChild(testMsg);
-	document.body.appendChild(console);
+	// Create the bar for dragging the console
+	var consoleDragBar = document.createElement("div");
+	consoleDragBar.innerHTML = "Console:"; 
+	consoleDragBar.setAttribute("style", "color: blue;");
+	
+	// Create the screen portion
+	var consoleScreen = document.createElement("div");
+	consoleScreen.setAttribute("style", "opacity:0.6; filter:alpha(opacity=60)");
+
+	// Put it all together
+	consoleWrapper.appendChild(consoleDragBar);
+	consoleWrapper.appendChild(consoleScreen);
+
+	var testMsg = document.createTextNode("Debug consoleWrapper:");
+	consoleWrapper.appendChild(testMsg);
+	document.body.appendChild(consoleWrapper);
 };
 
 /*
@@ -39,7 +55,7 @@ Logger.prototype.info = function(msg){
 	infoMsg.setAttribute("style", msgCss); 
 
 	// Add it to the console
-	document.getElementById(this.CONSOLE_ID).appendChild(infoMsg);
+	document.getElementById(this.CONSOLE_SCREEN_ID).appendChild(infoMsg);
 };
 
 /*
@@ -54,5 +70,5 @@ Logger.prototype.debug = function(msg){
 	infoMsg.setAttribute("style", msgCss); 
 
 	// Add it to the console
-	document.getElementById(this.CONSOLE_ID).appendChild(infoMsg);
+	document.getElementById(this.CONSOLE_SCREEN_ID).appendChild(infoMsg);
 };

@@ -3,13 +3,135 @@
 <head>
 	<script src="debug.lib.js"></script>
 	<script>
-		var log = new Logger();
+		/*
+		A rectangle that bounces around the screen.
+		*/
+		function BouncingRect(x, y, w, h, xVel, yVel){
+			this.x = x;
+			this.y = y;
+			this.w = w;
+			this.h = h;
+			this.xVel = xVel;
+			this.yVel = yVel;
+		};
+
+		/*
+		Sets the velocity of the bouncing rectangle.
+		*/
+		BouncingRect.prototype.setVel = function(newXVel, newYVel){	
+			this.xVel = newXVel;
+			this.yVel = newYVel;
+		};
+
+		/*
+		Moves the bouncing triangle
+		*/
+		BouncingRect.prototype.move = function(){
+			this.x += this.xVel;
+			this.y += this.yVel;
+		};
+
+		/*
+		Draws the bouncing rectangle
+		*/
+		BouncingRect.prototype.draw = function(ctx){
+			ctx.fillRect(this.x, this.y, this.w, this.h);
+		};
+
+		/*
+		Repositions the rectangle
+		*/
+		BouncingRect.prototype.repos = function(newX, newY){
+			this.x = newX;
+			this.y = newY;
+		}
+
+		/*
+		Global drawing variables 
+		*/
+		var canvas;
+		var ctx;
+		var bouncingRect = new BouncingRect(20, 20, 15, 15, 1, 1);
+
+		var log = new Logger();	// We will use debugging
+
+		/*
+		Initializes the scene and gets the animation started
+		*/
+		function initScene()
+		{
+			// get the rendering context
+			canvas = document.getElementById("ball_court");
+			ctx = canvas.getContext("2d");
+
+			// start the animation
+			setInterval(draw, 10);
+
+			// get a debugging console
+			log.createConsole();
+		}
+
+		/*
+		Draws the scene
+		*/
+		function draw(){
+			// clear the screen 
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			bouncingRect.draw(ctx);
+			bouncingRect.move();
+
+			handleWallCollision(bouncingRect);	
+		}
+
+		/*
+		Checks to see if the rectangle hit the wall.  If it did,
+		then the rectangle is repositioned and its velocity reset.
+		*/
+		function handleWallCollision(bouncingRect)
+		{
+			// Did it hit the right wall?
+			if(bouncingRect.x + bouncingRect.w > canvas.width)
+			{
+				log.debug("Hit right wall");
+				bouncingRect.repos(canvas.width - bouncingRect.w, bouncingRect.y);
+				log.debug("New position: " + bouncingRect.x);
+				bouncingRect.setVel(-bouncingRect.xVel, bouncingRect.yVel);
+				log.debug("New x velocity: " + bouncingRect.xVel);
+			}
+
+			// Did it hit the left wall?
+			if(bouncingRect.x < 0)
+			{
+				bouncingRect.repos(0, bouncingRect.y);
+				bouncingRect.setVel(-bouncingRect.xVel, bouncingRect.yVel);
+				log.debug("Hit left wall");
+			}
+
+			// Did it hit the top wall?
+			if(bouncingRect.y < 0)
+			{
+				bouncingRect.repos(bouncingRect.x, 0);
+				bouncingRect.setVel(bouncingRect.xVel, -bouncingRect.yVel);
+				log.debug("Hit top wall");
+			}
+
+			// Did it hit the bottom wall?
+			if(bouncingRect.y + bouncingRect.h > canvas.height)
+			{
+				bouncingRect.repos(bouncingRect.x, canvas.height - bouncingRect.h);
+				bouncingRect.setVel(bouncingRect.xVel, -bouncingRect.yVel);
+				log.debug("Hit bottom wall");
+			}
+		}
+
 	</script>
 	<link rel="stylesheet" type="text/css" href="test.css" />
 </head>
 
-<body>
-	<h1>Hello world!</h1>
+<body onload="initScene();">
+	<canvas id="ball_court" width="150" height="150">
+	</canvas>
 	<div id="console">
 		<h1>Hello again!</h1>
 	</div>
