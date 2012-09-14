@@ -21,6 +21,7 @@ var complexObj = new ComplexObj();
 // ..
 LogIs.c(complexObj);  
 
-This will output complexObj to the console. Note that you do not have to make complexObj a string in order to log it.
+This will output complexObj to the console. Note that you do not have to make complexObj a string in order to log it.  
+In fact you can put whatever variable you would like into the LogIs.c function and it will log it.
 
 You also have the option to manually turn the log on and off using Log.on() and Log.off().
