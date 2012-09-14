@@ -3,8 +3,11 @@ JavaScript-DebugTools
 
 Debug tools for building javascript.
 
-This is not intended to be included in our final releases, just for
-development. Please respect that everything in this project lives
-in the JavaScript-DebugTools/ folder in your project.
+IsLog
+=====
 
-Currently used in typing tutorial.
+IsLog stands for Independt Study Log.  It is a logger that 
+
+Use case:
+
+
