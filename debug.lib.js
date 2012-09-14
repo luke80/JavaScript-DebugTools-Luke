@@ -29,7 +29,8 @@ var IsLog = {
 	},
 
 	/*
-	Logs the message to the browser console.
+	Logs the message to the browser console. The "c" stands for
+	console.
 	*/
 	c: function (msg) {
 		if(this._LOG_ON)
