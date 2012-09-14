@@ -14,6 +14,7 @@ will detect this, and it will turn off all of its console messages.  The idea is
 once and not have to worry about turning on and off console messages when you deploy to production.
 
 Use case:
+<pre>
 <code>
   var complexObj = new ComplexObj();
   // ..
@@ -26,6 +27,7 @@ Use case:
   // If you are paranoid about meaningless logs in the console you can also turn it off explicitly:
   LogIs.off();
 </code>
+</pre>
 
 This will output complexObj to the console. Note that you do not have to make complexObj a string in order to log it, though strings are output too.  
 
