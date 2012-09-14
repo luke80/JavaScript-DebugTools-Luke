@@ -23,7 +23,9 @@ Use case:
   LogIs.c(complexObj);
   // somehow it isn't on... maybe your domain is weird (like 127.0.0.1) and you need to explicitly turn output on?
   LogIs.on();
-  /* PLEASE BE CAREFUL with this! We don't want console logs in our live versions of code. This is the reason it is off by default, so if you are explicitly turning this on before you release your code to our GitHub account, add your host to the check! */
+  /* PLEASE BE CAREFUL with this! We don't want console logs in our live versions of
+  code. This is the reason it is off by default, so if you are explicitly turning this
+  on before you release your code to our GitHub account, add your host to the check! */
   // If you are paranoid about meaningless logs in the console you can also turn it off explicitly:
   LogIs.off();
 </code>
