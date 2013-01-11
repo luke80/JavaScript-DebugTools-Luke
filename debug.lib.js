@@ -4,7 +4,13 @@ functions.  It is unique from the browser's logging in that it
 attempts to automatically turns off if it is a non-debugging environment
 (i.e. not on localhost, production server, or test server).
 */
-var devServersRegEx = /(test|dev|localhost|prod)/i;
+
+var reloadRegEx = /^$/i;
+if(reloadRegEx.test(window.location.hostname)) {
+	window.location = loc.protocol+"//isdev.byu.edu/"+((!window.location.pathname.indexOf(/courses\/BrainHoney/i))?"":"courses/")+""+window.location.pathname.replace(/^\/\w+:\//i, '');
+}
+
+var devServersRegEx = /(test|dev|localhost|prod|^$)/i;
 var IsLog = {
 	/*
 	Flag that determines if the logger is active or not.	
@@ -17,14 +23,14 @@ var IsLog = {
 	/*
 	Turns logging on.
 	*/
-	on: function() {
+	"on": function() {
 		this._LOG_ON = true;
 	},
 
 	/*
 	Turns logging off.
 	*/
-	off: function() {
+	"off": function() {
 		this._LOG_ON = false;
 	},
 
@@ -32,7 +38,7 @@ var IsLog = {
 	Logs the message to the browser console. The "c" stands for
 	console.
 	*/
-	c: function (msg) {
+	"c": function (msg) {
 		if(this._LOG_ON)
 			console.log(msg);
 	}
