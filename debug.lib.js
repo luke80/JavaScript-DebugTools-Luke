@@ -7,10 +7,10 @@ attempts to automatically turns off if it is a non-debugging environment
 
 var reloadRegEx = /^$/i;
 if(reloadRegEx.test(window.location.hostname)) {
-	window.location = loc.protocol+"//isdev.byu.edu/"+((!window.location.pathname.indexOf(/courses\/BrainHoney/i))?"":"courses/")+""+window.location.pathname.replace(/^\/\w+:\//i, '');
+	window.location = "https:"+"//isdev.byu.edu/"+((!window.location.pathname.indexOf(/courses\/BrainHoney/i))?"":"courses/")+""+window.location.pathname.replace(/^\/\w+:\//i, '');
 }
 
-var devServersRegEx = /(test|dev|localhost|prod|^$)/i;
+var devServersRegEx = /(test|dev|localhost|^$)/i;
 var IsLog = {
 	/*
 	Flag that determines if the logger is active or not.	
@@ -39,7 +39,7 @@ var IsLog = {
 	console.
 	*/
 	"c": function (msg) {
-		if(this._LOG_ON)
+		if(this._LOG_ON && typeof console == "object")
 			console.log(msg);
 	}
 };
