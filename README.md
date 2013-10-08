@@ -3,10 +3,10 @@ JavaScript-DebugTools
 
 Debug tools for building javascript.
 
-IsLog
+Log
 -------------------------
 
-IsLog stands for Independt Study Log.  It is a logger that outputs to the browswer's console.  It is different
+Log is, in the context of this project, a JavaScript Object.  It is a logger that outputs to the browswer's console.  It is different
 from the browser's log functions in that it will attempt to automatically detect what environment it is in.
 For example, if the page is running from www.byu.is.edu/test/my-page-with-logging.html, then the logger will detect
 that it is on a testing site and default to turn on all logging.  On the other hand if it is on a live site the logger
@@ -20,9 +20,9 @@ Use case:
   // ..
   // do lots of stuff to it
   // ..
-  LogIs.c(complexObj);
+  Log.c(complexObj);
   // somehow it isn't on... maybe your domain is weird (like 127.0.0.1) and you need to explicitly turn output on?
-  LogIs.on();
+  Log.on();
   /* PLEASE BE CAREFUL with this! We don't want console logs in our live versions of
   code. This is the reason it is off by default, so if you are explicitly turning this
   on before you release your code to our GitHub account, add your host to the check! */
