@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Debug Generic Demo</title>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" language="javascript" src="debug.generic.lib.js"></script>
+		<script>
+		Log.findCallerOn();
+		//Log.showCallerArgsOn();
+		Log.stackTraceOn();		
+		Log.o("Hello world!");
+		function helloWorld(message) {
+			Log.o(message);
+			iAmHere("logged");
+		}
+		function iAmHere(setting) {
+			Log.o("iAmHere received setting: "+setting);
+		}
+		helloWorld("Hello world (function)!");
+		$(document).ready(function(){
+			Log.o("Hello document!");
+		});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
